@@ -11,7 +11,7 @@ public class DbMySql implements IBancoDados {
 	private String url = "jdbc:mysql://localhost:3306/prova2bim?useTimezone=true&serverTimezone=UTC";
 	private String root = "usuario";
 	private String key = "123123@senha";
-
+	
 	public Connection ConectarBanco() {			
 			
 			try {
@@ -26,7 +26,5 @@ public class DbMySql implements IBancoDados {
 			}
 			
 			return null;
-	}
-	
-
+	}	
 }
