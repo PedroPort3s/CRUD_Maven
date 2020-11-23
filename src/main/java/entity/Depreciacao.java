@@ -40,5 +40,4 @@ public class Depreciacao {
 	public void setPrazoAnos(int prazoAnos) {
 		this.prazoAnos = prazoAnos;
 	}
-
 }

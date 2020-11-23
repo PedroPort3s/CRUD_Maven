@@ -11,9 +11,9 @@ public class TesteConexao {
 	@Test
 	public void TesteDeConexao() {
 		
-		Connection conn = new DbMySql().ConectarBanco();
+		int conn = new DbMySql().ConectarBanco();
 		
-		if(conn != null) {
+		if(conn > 0) {
 			System.out.println(conn);
 			assertTrue(true);
 		}

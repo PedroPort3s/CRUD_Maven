@@ -58,9 +58,7 @@ public abstract class Automovel {
 
 	public void setQuilometragem(double quilometragem) {
 		this.quilometragem = quilometragem;
-	}
-
-	
+	}	
 
 	public Automovel(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_) {
 		this._id = id_;

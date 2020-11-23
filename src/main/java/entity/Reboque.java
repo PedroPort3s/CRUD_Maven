@@ -3,7 +3,7 @@ package entity;
 public class Reboque {
 
 	public Reboque() {
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public Reboque(double id, double quilometragem) {
@@ -12,8 +12,14 @@ public class Reboque {
 		this.quilometragem = quilometragem;
 	}
 
+	public Reboque(double id, double quilometragem, double valorReboque) {
+		super();
+		this.id = id;
+		this.quilometragem = quilometragem;
+		this.valorReboque = valorReboque;
+	}
+
 	private double id;
-	
 	public double getId() {
 		return id;
 	}
@@ -30,5 +36,13 @@ public class Reboque {
 	public void setQuilometragem(double quilometragem) {
 		this.quilometragem = quilometragem;
 	}
+	
+	private double valorReboque;
+	public double getValorReboque() {
+		return valorReboque;
+	}
 
+	public void setValorReboque(double valorReboque) {
+		this.valorReboque = valorReboque;
+	}
 }
