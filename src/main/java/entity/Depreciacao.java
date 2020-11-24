@@ -2,9 +2,9 @@ package entity;
 
 public class Depreciacao {
 	
-	private double valorVenal;
+	private double depreciacaoAoMes;
 	private double valorFinal;
-	private int prazoAnos;
+	private Categoria categoria;
 	
 	public Depreciacao() {
 		
@@ -12,32 +12,24 @@ public class Depreciacao {
 
 	public Depreciacao(double valorVenal, double valorFinal, int prazoAnos) {
 		super();
-		this.valorVenal = valorVenal;
-		this.valorFinal = valorFinal;
-		this.prazoAnos = prazoAnos;
+		this.depreciacaoAoMes = ((valorVenal - valorFinal) * (prazoAnos * 12));
 	}
-
-	public double getValorVenal() {
-		return valorVenal;
-	}
-
-	public void setValorVenal(double valorVenal) {
-		this.valorVenal = valorVenal;
+	
+	public Depreciacao(Automovel aut, Categoria cat) {
+		this.categoria = cat;
+		aut.get_valor();
+		categoria.getprazoDepreciacao();
+		categoria.getpercValorResidual();
+		categoria.gettaxaDepreciacao();
 	}
 
 	public double getValorFinal() {
 		return valorFinal;
 	}
-
-	public void setValorFinal(double valorFinal) {
-		this.valorFinal = valorFinal;
+	
+	public double getDepreciacaoAoMes() {
+		return depreciacaoAoMes;
 	}
-
-	public int getPrazoAnos() {
-		return prazoAnos;
-	}
-
-	public void setPrazoAnos(int prazoAnos) {
-		this.prazoAnos = prazoAnos;
-	}
+	
+	public double
 }

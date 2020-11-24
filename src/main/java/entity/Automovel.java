@@ -1,6 +1,19 @@
 package entity;
 
 public abstract class Automovel {
+	
+	public Automovel(int _id, String _nome, int _qtdRodas, String _cor, double _valor, Categoria _Categoria,
+			double quilometragem) {
+		super();
+		this._id = _id;
+		this._nome = _nome;
+		this._qtdRodas = _qtdRodas;
+		this._cor = _cor;
+		this._valor = _valor;
+		this._Categoria = _Categoria;
+		this.quilometragem = quilometragem;
+	}
+	
 	private int _id;
 
 	public int get_id() {
@@ -9,6 +22,16 @@ public abstract class Automovel {
 
 	public void set_id(int value) {
 		this._id = value;
+	}
+	
+	private String _nome;
+
+	public String get_nome() {
+		return _nome;
+	}
+
+	public void set_nome(String _nome) {
+		this._nome = _nome;
 	}
 
 	private int _qtdRodas;
@@ -58,17 +81,9 @@ public abstract class Automovel {
 
 	public void setQuilometragem(double quilometragem) {
 		this.quilometragem = quilometragem;
-	}	
-
-	public Automovel(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_) {
-		this._id = id_;
-		this._qtdRodas = qtdRodas_;
-		this._cor = cor_;
-		this._valor = valor_;
-		this._Categoria = Categoria_;
 	}
 	
-	public abstract Depreciacao CalcularDepreciacaoGerencial(double valorVenal, double valorFinal, int prazoAnos);
+	public abstract Depreciacao CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos);
 	
-	public abstract Depreciacao CalcularDepreciacaoContabil(Categoria categoria);
+	public abstract Depreciacao CalcularDepreciacaoContabil();
 }

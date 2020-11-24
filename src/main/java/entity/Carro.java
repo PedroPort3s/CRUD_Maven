@@ -1,17 +1,14 @@
 package entity;
 
-public class Carro extends Automovel {
-	
-	private int _qtdPortas;
+public class Carro extends Automovel 
+{
+	public Carro(int _id, String _nome, int _qtdRodas, String _cor, double _valor, Categoria _Categoria,
+			double quilometragem, int _qtdPortas) {
+		super(_id, _nome, _qtdRodas, _cor, _valor, _Categoria, quilometragem);
+		this._qtdPortas = _qtdPortas;
+	}
 
-	public Carro(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_) {
-		super(id_, qtdRodas_, cor_, valor_, Categoria_);
-	}
-	
-	public Carro(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_, int qtdPortas_) {
-		super(id_, qtdRodas_, cor_, valor_, Categoria_);
-		this._qtdPortas = qtdPortas_;
-	}
+	private int _qtdPortas;	
 
 	public int get_qtdPortas() {
 		return _qtdPortas;
@@ -22,13 +19,15 @@ public class Carro extends Automovel {
 	}
 
 	@Override
-	public Depreciacao CalcularDepreciacaoGerencial(double valorVenal, double valorFinal, int prazoAnos) {
-		// TODO Auto-generated method stub
-		return null;
+	public Depreciacao CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos) {
+		
+		Depreciacao dep = new Depreciacao(this.get_valor(),valorFinal,prazoAnos);
+
+		return ;
 	}
 
 	@Override
-	public Depreciacao CalcularDepreciacaoContabil(Categoria categoria) {
+	public Depreciacao CalcularDepreciacaoContabil() {
 		// TODO Auto-generated method stub
 		return null;
 	}

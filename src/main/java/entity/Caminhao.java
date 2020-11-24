@@ -1,24 +1,15 @@
 package entity;
 
 public class Caminhao extends Automovel {
-
-	private int _qtdEixos;
-
-	public Caminhao(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_) {
-		super(id_, qtdRodas_, cor_, valor_, Categoria_);
-	}
-
-	public Caminhao(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_, int qtdEixos_) {
-		super(id_, qtdRodas_, cor_, valor_, Categoria_);
-		this._qtdEixos = qtdEixos_;
-	}
-
-	public Caminhao(int id_, int qtdRodas_, String cor_, double valor_, Categoria Categoria_, int _qtdEixos,
-			entity.Reboque reboque) {
-		super(id_, qtdRodas_, cor_, valor_, Categoria_);
+	
+	public Caminhao(int _id, String _nome, int _qtdRodas, String _cor, double _valor, Categoria _Categoria,
+			double quilometragem, int _qtdEixos, entity.Reboque reboque) {
+		super(_id, _nome, _qtdRodas, _cor, _valor, _Categoria, quilometragem);
 		this._qtdEixos = _qtdEixos;
 		Reboque = reboque;
 	}
+
+	private int _qtdEixos;
 
 	public int get_qtdEixos() {
 		return _qtdEixos;

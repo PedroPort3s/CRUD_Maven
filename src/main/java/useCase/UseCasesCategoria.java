@@ -32,7 +32,7 @@ public class UseCasesCategoria {
 			if (retorno == 1) {
 				bancoDados.CommitTransacao();
 			} else {
-				throw new Exception("Não foi posível gravar uma categoria");
+				throw new Exception("Não foi possível gravar uma categoria");
 			}
 		} catch (SQLException e) {
 			bancoDados.RollbackTransacao();
@@ -66,7 +66,7 @@ public class UseCasesCategoria {
 			if (retorno == 2) {
 				bancoDados.CommitTransacao();
 			} else {
-				throw new Exception("Não foi posível editar uma categoria");
+				throw new Exception("Não foi possível editar uma categoria");
 			}
 		} catch (SQLException e) {
 			bancoDados.RollbackTransacao();
@@ -100,7 +100,7 @@ public class UseCasesCategoria {
 			if (retorno == 1) {
 				bancoDados.CommitTransacao();
 			} else {
-				throw new Exception("Não foi posível excluir uma categoria");
+				throw new Exception("Não foi possível excluir uma categoria");
 			}
 		} catch (SQLException e) {
 			bancoDados.RollbackTransacao();
@@ -133,7 +133,7 @@ public class UseCasesCategoria {
 			categoria = catDAO.Carregar(id);
 
 			if (categoria == null) {
-				throw new Exception("Não foi posível carregar uma categoria");
+				throw new Exception("Não foi possível carregar uma categoria");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -160,7 +160,7 @@ public class UseCasesCategoria {
 			categorias = catDAO.Listar();
 
 			if (categorias == null) {
-				throw new Exception("Não foi posível lsitar as categorias");
+				throw new Exception("Não foi possível listar as categorias");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

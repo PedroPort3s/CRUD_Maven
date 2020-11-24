@@ -18,5 +18,5 @@ public interface IPadraoCRUD<T> {
 
 	public T Preencher(ResultSet resultSet) throws SQLException, Exception;
 
-	public List<T> Listar() throws SQLException;
+	public List<T> Listar() throws SQLException, Exception;
 }

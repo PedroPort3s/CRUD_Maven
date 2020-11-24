@@ -5,26 +5,25 @@ public class Reboque {
 	public Reboque() {
 
 	}
-	
-	public Reboque(double id, double quilometragem) {
-		super();
-		this.id = id;
-		this.quilometragem = quilometragem;
-	}
 
-	public Reboque(double id, double quilometragem, double valorReboque) {
+
+
+	public Reboque(int id, String nomeReboque, double quilometragem, double valorReboque) {
 		super();
 		this.id = id;
 		this.quilometragem = quilometragem;
 		this.valorReboque = valorReboque;
+		this.nomeReboque = nomeReboque;
 	}
 
-	private double id;
-	public double getId() {
+
+
+	private int id;
+	public int getId() {
 		return id;
 	}
 
-	public void setId(double id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -45,4 +44,15 @@ public class Reboque {
 	public void setValorReboque(double valorReboque) {
 		this.valorReboque = valorReboque;
 	}
+	
+	private String nomeReboque;
+	public String getNomeReboque() {
+		return nomeReboque;
+	}
+
+	public void setNomeReboque(String nomeReboque) {
+		this.nomeReboque = nomeReboque;
+	}
+
+	
 }
