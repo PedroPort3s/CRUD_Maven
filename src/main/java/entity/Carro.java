@@ -20,15 +20,22 @@ public class Carro extends Automovel
 
 	@Override
 	public Depreciacao CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos) {
-		
-		Depreciacao dep = new Depreciacao(this.get_valor(),valorFinal,prazoAnos);
-
-		return ;
+		Depreciacao dep = new Depreciacao();
+		dep.setDepreciacaoAoMes((this.get_valor() - valorFinal) * (prazoAnos*12));
+		return dep;
 	}
 
 	@Override
 	public Depreciacao CalcularDepreciacaoContabil() {
-		// TODO Auto-generated method stub
+		
+		Depreciacao dep = new Depreciacao();
+		
+		Categoria cat =this.get_Categoria();
+		
+		double valorResidual = this.get_valor() * (cat.getpercValorResidual()/100);
+		
+		dep.setDepreciacaoAoMes(this.get_valor() / (cat.getprazoDepreciacao() * 12));
+		
 		return null;
 	}
 

@@ -63,4 +63,12 @@ public class Categoria
 		this._prazoDepreciacao = prazoDepreciacao_;
 		this._percValorResidual = percValorResidual_;
 	}
+	
+	public Categoria(String nome_,float taxaDepreciacao_,int prazoDepreciacao_,float percValorResidual_)
+	{	
+		this._nome = nome_;
+		this._taxaDepreciacao = taxaDepreciacao_;
+		this._prazoDepreciacao = prazoDepreciacao_;
+		this._percValorResidual = percValorResidual_;
+	}
 }

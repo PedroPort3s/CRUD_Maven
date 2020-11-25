@@ -57,7 +57,7 @@ public class ControlCaminhao {
 		return caminhao;
 	}
 
-	public List<Caminhao> ListarCaminhaos(int id) throws Exception {
+	public List<Caminhao> ListarCaminhoes() throws Exception {
 		List<Caminhao> caminhoes = null;
 
 		UseCasesCaminhao UseCaseCaminhao = new UseCasesCaminhao(new DbMySql());

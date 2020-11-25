@@ -57,7 +57,7 @@ public class ControlCarro {
 		return carro;
 	}
 
-	public List<Carro> ListarCarros(int id) throws Exception {
+	public List<Carro> ListarCarros() throws Exception {
 		List<Carro> carros = null;
 
 		UseCasesCarro UseCaseCarro = new UseCasesCarro(new DbMySql());
