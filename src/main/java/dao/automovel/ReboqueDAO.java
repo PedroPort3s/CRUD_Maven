@@ -18,7 +18,7 @@ public class ReboqueDAO {
 	
 	private String Select_Reboque() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id_Reboque, nomeReboque, quilometragemReboque, valorReboque FROM reboque");
+		sql.append("SELECT id_Reboque, nomeReboque, quilometragemReboque, valorReboque FROM reboque ");
 		return sql.toString();
 	}
 

@@ -24,7 +24,7 @@ public class CarroDAO implements IPadraoCRUD<Carro> {
 	private String SelectCarro() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT a.id, a.nome,a.quilometragem, a.qtdRodas, a.cor, a.valor, a.id_Categoria, c.qtdPortas ");
-		sql.append(" FROM automovel as a inner join carro as c on c.id_Aut = a.id;");
+		sql.append(" FROM automovel as a inner join carro as c on c.id_Aut = a.id");
 		return sql.toString();
 	}
 

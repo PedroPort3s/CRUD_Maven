@@ -1,5 +1,7 @@
 package entity;
 
+import helper.Verifica;
+
 public class Carro extends Automovel 
 {
 	public Carro(int _id, String _nome, int _qtdRodas, String _cor, double _valor, Categoria _Categoria,
@@ -23,24 +25,35 @@ public class Carro extends Automovel
 	}
 
 	@Override
-	public Depreciacao CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos) {
-		Depreciacao dep = new Depreciacao();
-		dep.setDepreciacaoAoMes((this.get_valor() - valorFinal) * (prazoAnos*12));
-		return dep;
+	public String CalcularDepreciacaoGerencial(double valorFinal) {
+		
+		Categoria cat = this.get_Categoria();
+		
+		int meses = cat.getprazoDepreciacao() * 12;
+		
+		double depreciacaoMes = (this.get_valor() - valorFinal) * meses;
+		
+		double valorDepreciado = depreciacaoMes * meses;
+		
+		return "Depreciação ao Mes: R$ "+ Verifica.Arredondar(depreciacaoMes,2) + "\nValor depreciado: R$ "+ Verifica.Arredondar(valorDepreciado,2)+" em "+ cat.getprazoDepreciacao() +" anos.";
 	}
 
 	@Override
-	public Depreciacao CalcularDepreciacaoContabil() {
+	public String CalcularDepreciacaoContabil() {
 		
-		Depreciacao dep = new Depreciacao();
+		Categoria cat = this.get_Categoria();
 		
-		Categoria cat =this.get_Categoria();
+		double valorResidual = this.get_valor() * (cat.getpercValorResidual() / 100);
 		
-		double valorResidual = this.get_valor() * (cat.getpercValorResidual()/100);
+		double depreciacaoMeses = this.get_valor() / (cat.getprazoDepreciacao() * 12);
 		
-		dep.setDepreciacaoAoMes(this.get_valor() / (cat.getprazoDepreciacao() * 12));
+		double porcentagemDesvalorizacao = (valorResidual/this.get_valor()) * 100;
 		
-		return null;
+		return "Depreciação ao Mes: R$ "+ Verifica.Arredondar(depreciacaoMeses,2) + "\nValor residual após " +cat.getprazoDepreciacao() + " anos: R$ "+Verifica.Arredondar(valorResidual,2)+"\n Desvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacao,2) + "%";
 	}
 
+	@Override
+	public String toString() {
+		return "Carro qtd Portas=" + _qtdPortas;
+	}
 }

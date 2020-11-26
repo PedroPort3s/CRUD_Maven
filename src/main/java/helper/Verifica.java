@@ -1,5 +1,8 @@
 package helper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Verifica {
 
 	public static long ConverterNumeroLong(String numeros) {
@@ -46,5 +49,15 @@ public class Verifica {
 			return false;
 		}
 	}
+	
+	public static double Arredondar(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = BigDecimal.valueOf(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+	
+	
 
 }

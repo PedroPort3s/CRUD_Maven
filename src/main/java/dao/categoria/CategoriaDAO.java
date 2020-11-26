@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import dao.automovel.AutomovelDAO;
 import entity.Carro;
 import entity.Categoria;
 import helper.db;
@@ -23,7 +21,7 @@ public class CategoriaDAO implements IPadraoCRUD<Categoria> {
 
 	private String Select_Categoria() {
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id_Categoria, nome, taxaDepreciacao, prazoDepreciacao, percValorResidual FROM categoria;");
+		sql.append("SELECT id_Categoria, nome, taxaDepreciacao, prazoDepreciacao, percValorResidual FROM categoria");
 		return sql.toString();
 	}
 

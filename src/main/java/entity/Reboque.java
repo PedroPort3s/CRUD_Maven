@@ -6,8 +6,6 @@ public class Reboque {
 
 	}
 
-
-
 	public Reboque(int id, String nomeReboque, double quilometragem, double valorReboque) {
 		super();
 		this.id = id;
@@ -15,8 +13,6 @@ public class Reboque {
 		this.valorReboque = valorReboque;
 		this.nomeReboque = nomeReboque;
 	}
-
-
 
 	private int id;
 	public int getId() {
@@ -53,6 +49,14 @@ public class Reboque {
 	public void setNomeReboque(String nomeReboque) {
 		this.nomeReboque = nomeReboque;
 	}
+
+	@Override
+	public String toString() {
+		return "Reboque id=" + id + ", nomeReboque =" + nomeReboque + ", valorReboque=" + valorReboque
+				+ ", quilometragem=" + quilometragem;
+	}
+	
+	
 
 	
 }

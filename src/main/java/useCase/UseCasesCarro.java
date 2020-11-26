@@ -179,9 +179,9 @@ public class UseCasesCarro {
 		if(carro == null) throw new Exception("Carro não informado");
 		if(carro.get_id() <= 0) throw new Exception("Informe uma id válida para o carro");
 		if(carro.get_nome().isEmpty()) throw new Exception("Informe o nome do carro");
-		if(carro.get_qtdPortas() != 2 || carro.get_qtdPortas() != 3 ||  carro.get_qtdPortas() != 4) throw new Exception("Informe uma quantidade de portas válida");
+		if(carro.get_qtdPortas() != 2 && carro.get_qtdPortas() != 3 &&  carro.get_qtdPortas() != 4) throw new Exception("Informe uma quantidade de portas válida");
 		if(carro.get_cor().isEmpty()) throw new Exception("Informe a cor do carro");
-		if(carro.get_qtdRodas() != 4 || carro.get_qtdRodas() != 6) throw new Exception("Informe a uma quantiade de rodas válida");
+		if(carro.get_qtdRodas() != 4 && carro.get_qtdRodas() != 6) throw new Exception("Informe a uma quantidade de rodas válida");
 		if(carro.get_valor() <= 1000) throw new Exception("Informe um valor acima de R$ 1000,00 para o carro.");
 		if(carro.getQuilometragem() < 0) throw new Exception("Informe uma quilometragem maior ou igual a zero");
 		if(carro.get_Categoria() == null) throw new Exception("Informe a categoria a qual o carro pertence");
@@ -191,9 +191,9 @@ public class UseCasesCarro {
 	private void ValidarCarroGravar(Carro carro) throws Exception {
 		if(carro == null) throw new Exception("Carro não informado");
 		if(carro.get_nome().isEmpty()) throw new Exception("Informe o nome do carro");
-		if(carro.get_qtdPortas() != 2 || carro.get_qtdPortas() != 3 ||  carro.get_qtdPortas() != 4) throw new Exception("Informe uma quantidade de portas válida");
+		if(carro.get_qtdPortas() != 2 && carro.get_qtdPortas() != 3 &&  carro.get_qtdPortas() != 4) throw new Exception("Informe uma quantidade de portas válida");
 		if(carro.get_cor().isEmpty()) throw new Exception("Informe a cor do carro");
-		if(carro.get_qtdRodas() != 4 || carro.get_qtdRodas() != 6) throw new Exception("Informe a uma quantiade de rodas válida");
+		if(carro.get_qtdRodas() != 4 && carro.get_qtdRodas() != 6) throw new Exception("Informe a uma quantidade de rodas válida");
 		if(carro.get_valor() <= 1000) throw new Exception("Informe um valor acima de R$ 1000,00 para o carro.");
 		if(carro.getQuilometragem() < 0) throw new Exception("Informe uma quilometragem maior ou igual a zero");
 		if(carro.get_Categoria() == null) throw new Exception("Informe a categoria a qual o carro pertence");

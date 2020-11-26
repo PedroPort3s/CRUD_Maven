@@ -1,5 +1,7 @@
 package entity;
 
+import helper.Verifica;
+
 public class Caminhao extends Automovel {
 
 	public Caminhao(int _id, String _nome, int _qtdRodas, String _cor, double _valor, Categoria _Categoria,
@@ -10,7 +12,7 @@ public class Caminhao extends Automovel {
 	}
 
 	public Caminhao() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	private int _qtdEixos;
@@ -34,23 +36,58 @@ public class Caminhao extends Automovel {
 	}
 
 	@Override
-	public Depreciacao CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos) {
-		Depreciacao dep = new Depreciacao();
-		dep.setDepreciacaoAoMes((this.get_valor() - valorFinal) * (prazoAnos * 12));
-		return dep;
+	public String CalcularDepreciacaoGerencial(double valorFinal) {
+		Categoria cat = this.get_Categoria();
+
+		int meses = cat.getprazoDepreciacao() * 12;
+
+		double depreciacaoMesCaminhao = (this.get_valor() - valorFinal) * meses;
+
+		double valorDepreciadoCaminhao = depreciacaoMesCaminhao * meses;
+		
+		String depCaminhao = "Caminhão " + this.get_nome()+":\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesCaminhao, 2)  + "\nValor depreciado: R$ " + Verifica.Arredondar(valorDepreciadoCaminhao, 2) + " em "
+				+ cat.getprazoDepreciacao() + " anos.";
+		
+		double depreciacaoMesReboque = (this.getReboque().getValorReboque() - (this.getReboque().getValorReboque() * (cat.getpercValorResidual()/100))) * meses;
+		double valorDepreciadoReboque = depreciacaoMesReboque * meses;
+		
+		String depReboque = "Reboque " + this.getReboque().getNomeReboque()+":\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesReboque, 2)   + "\nValor depreciado: R$ " + Verifica.Arredondar(valorDepreciadoReboque, 2)  + " em "
+				+ cat.getprazoDepreciacao() + " anos.";
+				
+		String depreciacaoTotal = "Depreciação total ao mes: R$ " + Verifica.Arredondar((depreciacaoMesCaminhao + depreciacaoMesReboque), 2)  + "\nValor total depreciado em" + cat.getprazoDepreciacao()+" anos: R$ "+Verifica.Arredondar((valorDepreciadoCaminhao+valorDepreciadoReboque), 2);
+
+		return depCaminhao + "\n" + depReboque + "\n" + depreciacaoTotal; 
 	}
 
 	@Override
-	public Depreciacao CalcularDepreciacaoContabil() {
-		Depreciacao dep = new Depreciacao();
-
+	public String CalcularDepreciacaoContabil() {
 		Categoria cat = this.get_Categoria();
 
-		double valorResidual = this.get_valor() * (cat.getpercValorResidual() / 100);
+		double valorResidualCaminhao = this.get_valor() * (cat.getpercValorResidual() / 100);
 
-		dep.setDepreciacaoAoMes(this.get_valor() / (cat.getprazoDepreciacao() * 12));
+		double depreciacaoMesesCaminhao = this.get_valor() / (cat.getprazoDepreciacao() * 12);
 
-		return null;
+		double porcentagemDesvalorizacaoCaminhao = (valorResidualCaminhao / this.get_valor()) * 100;
+		
+		String depCaminhao = "Caminhão " + this.get_nome()+"\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesesCaminhao,2) + "\nValor residual após " + cat.getprazoDepreciacao()
+		+ " anos: R$ " + Verifica.Arredondar(valorResidualCaminhao,2) + "\n Desvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacaoCaminhao,2) + "%";
+		
+		double valorResidualReboque = this.getReboque().getValorReboque() * (cat.getpercValorResidual() / 100);
+
+		double depreciacaoMesesReboque = this.getReboque().getValorReboque() / (cat.getprazoDepreciacao() * 12);
+
+		double porcentagemDesvalorizacaoReboque= (valorResidualCaminhao / this.get_valor()) * 100;
+		
+		String depReboque = "Reboque " + this.getReboque().getNomeReboque()+"\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesesReboque,2) + "\nValor residual após " + cat.getprazoDepreciacao()
+		+ " anos: R$ " + Verifica.Arredondar(valorResidualReboque,2) + "\n Desvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacaoReboque,2) + "%";
+		
+		String depreciacaoTotal = "Depreciação total ao mes: R$ " + Verifica.Arredondar(depreciacaoMesesCaminhao + depreciacaoMesesReboque,2) + "\nValor total residual em" + cat.getprazoDepreciacao()+" anos: R$ "+Verifica.Arredondar((valorResidualCaminhao+valorResidualReboque),2);
+
+		return depCaminhao + "\n" + depReboque + "\n" + depreciacaoTotal;
 	}
 
+	@Override
+	public String toString() {
+		return "Caminhao quantidade Eixos=" + _qtdEixos + ", Reboque=" + Reboque;
+	}
 }

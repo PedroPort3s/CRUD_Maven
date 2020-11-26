@@ -71,4 +71,11 @@ public class Categoria
 		this._prazoDepreciacao = prazoDepreciacao_;
 		this._percValorResidual = percValorResidual_;
 	}
+
+	@Override
+	public String toString() {
+		return "Categoria id=" + _id_Categoria + ", nome=" + _nome + ", taxa Depreciacao="
+				+ _taxaDepreciacao + ", Prazo Depreciacao (anos)=" + _prazoDepreciacao + ", Porcentagem Valor Residual="
+				+ _percValorResidual;
+	}
 }

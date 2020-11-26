@@ -34,6 +34,90 @@ import javafx.stage.Stage;
 
 public class FrmCadVeiculoController implements Initializable {
 
+	public FrmCadVeiculoController() {
+
+	}
+
+	private Carro car = null;
+	private Caminhao cam = null;
+
+	public FrmCadVeiculoController(Carro carro) {
+		this.car = carro;
+	}
+
+	public FrmCadVeiculoController(Caminhao caminhao) {
+		this.cam = caminhao;
+	}
+
+	private void CarregarCarroTela(Carro carro) {
+		try {
+			this.TravaCaminhao(true);
+			this.TravaCarro(false);
+
+			lbIdValor.setText(carro.get_id() + "");
+			txtCor.setText(carro.get_cor());
+			txtNome.setText(carro.get_nome());
+			txtQtdRodas.setText(carro.get_qtdRodas() + "");
+			txtNumPortas.setText(carro.get_qtdPortas() + "");
+			txtQuilometragem.setText(carro.getQuilometragem() + "");
+			txtValor.setText(carro.get_valor() + "");
+
+			List<Categoria> lstCategorias = new ControlCategoria().ListarCategorias();
+
+			ObservableList<Categoria> categorias = FXCollections.observableArrayList(lstCategorias);
+
+			Categoria indice = categorias.stream()
+					.filter(x -> x.getid_Categoria() == carro.get_Categoria().getid_Categoria()).findFirst()
+					.orElse(null);
+
+			cbCategorias.getSelectionModel().select(indice.getid_Categoria() - 1);
+
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
+			alert.showAndWait();
+		}
+	}
+
+	private void CarregarCaminhaoTela(Caminhao caminhao) {
+		try {
+
+			this.TravaCaminhao(false);
+			this.TravaCarro(true);
+
+			lbIdValor.setText(caminhao.get_id() + "");
+			txtCor.setText(caminhao.get_cor());
+			txtNome.setText(caminhao.get_nome());
+			txtQtdRodas.setText(caminhao.get_qtdRodas() + "");
+			txtQuilometragem.setText(caminhao.getQuilometragem() + "");
+			txtValor.setText(caminhao.get_valor() + "");
+
+			List<Categoria> lstCategorias = new ControlCategoria().ListarCategorias();
+
+			ObservableList<Categoria> categorias = FXCollections.observableArrayList(lstCategorias);
+
+			Categoria indice = categorias.stream()
+					.filter(x -> x.getid_Categoria() == caminhao.get_Categoria().getid_Categoria()).findFirst()
+					.orElse(null);
+
+			cbCategorias.getSelectionModel().select(indice.getid_Categoria() - 1);
+
+			List<Reboque> lstReboques = new ControlReboque().ListarReboques();
+
+			ObservableList<Reboque> reboques = FXCollections.observableArrayList(lstReboques);
+
+			Reboque indiceReboque = reboques.stream().filter(x -> x.getId() == caminhao.getReboque().getId())
+					.findFirst().orElse(null);
+
+			cbReboque.getSelectionModel().select(indiceReboque.getId() - 1);
+
+			txtNumEixos.setText(caminhao.get_qtdEixos() + "");
+
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
+			alert.showAndWait();
+		}
+	}
+
 	@FXML
 	private ResourceBundle resources;
 
@@ -150,7 +234,7 @@ public class FrmCadVeiculoController implements Initializable {
 		try {
 			if (rdCaminhao.isSelected()) {
 				Caminhao caminhao = new Caminhao();
-				
+
 				caminhao.set_Categoria(cbCategorias.getSelectionModel().getSelectedItem());
 				caminhao.set_cor(txtCor.getText());
 				caminhao.set_nome(txtNome.getText());
@@ -160,14 +244,18 @@ public class FrmCadVeiculoController implements Initializable {
 				caminhao.set_qtdEixos(Verifica.ConverterNumeroInt(txtNumEixos.getText()));
 				caminhao.setReboque(cbReboque.getSelectionModel().getSelectedItem());
 
+				if (!lbIdValor.getText().isEmpty()) {
+					caminhao.set_id(Verifica.ConverterNumeroInt(lbIdValor.getText()));
+				}
+
 				if (new ControlCaminhao().GravarCaminhao(caminhao) != 1) {
-					throw new Exception("Não foi possivel gravar um caminhao.");
-				} 
-				else {
-					Alert alert = Alerts.alertSucesso("Sucesso", "", "Caminhao gravado com sucesso.");
+					throw new Exception("Não foi possivel "+  (!lbIdValor.getText().isEmpty() ? "editar" : "gravar")+" um caminhao.");
+				} else {
+					Alert alert = Alerts.alertSucesso("Sucesso", "", "Caminhao "+  (!lbIdValor.getText().isEmpty() ? "editado" : "gravado")+" com sucesso.");
 					alert.showAndWait();
 					LimparCadastro();
 				}
+
 			} else {
 				Carro carro = new Carro();
 
@@ -178,12 +266,15 @@ public class FrmCadVeiculoController implements Initializable {
 				carro.set_valor(Verifica.ConverterNumeroDouble(txtValor.getText()));
 				carro.setQuilometragem(Verifica.ConverterNumeroDouble(txtQuilometragem.getText()));
 				carro.set_qtdPortas(Verifica.ConverterNumeroInt(txtNumPortas.getText()));
+				
+				if (!lbIdValor.getText().isEmpty()) {
+					carro.set_id(Verifica.ConverterNumeroInt(lbIdValor.getText()));
+				}
 
 				if (new ControlCarro().GravarCarro(carro) != 1) {
-					throw new Exception("Não foi possivel gravar um carro.");
-				} 
-				else {
-					Alert alert = Alerts.alertSucesso("Sucesso", "", "Carro gravado com sucesso.");
+					throw new Exception("Não foi possivel " + (!lbIdValor.getText().isEmpty() ? "editar" : "gravar") +" um carro.");
+				} else {
+					Alert alert = Alerts.alertSucesso("Sucesso", "", "Carro "+  (!lbIdValor.getText().isEmpty() ? "editado" : "gravado")+ " com sucesso.");
 					alert.showAndWait();
 					LimparCadastro();
 				}
@@ -251,8 +342,9 @@ public class FrmCadVeiculoController implements Initializable {
 		assert txtQtdRodas != null : "fx:id=\"txtQtdRodas\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
 
 	}
-	
+
 	private void LimparCadastro() {
+		lbIdValor.setText("");
 		txtCor.clear();
 		txtNome.clear();
 		txtNumEixos.clear();
@@ -260,21 +352,25 @@ public class FrmCadVeiculoController implements Initializable {
 		txtQtdRodas.clear();
 		txtQuilometragem.clear();
 		txtValor.clear();
+		btnGravar.setText("Gravar");
+		this.car = null;
+		this.cam = null;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			
-			if(rdCaminhao.isSelected()) {
+			lbIdValor.setText("");
+
+			if (rdCaminhao.isSelected()) {
 				this.TravaCaminhao(false);
 				this.TravaCarro(true);
-			}
-			else {
+			} else {
 				this.TravaCaminhao(true);
 				this.TravaCarro(false);
 			}
-			
+
 			List<Categoria> lstCategorias = new ControlCategoria().ListarCategorias();
 
 			if (lstCategorias != null && lstCategorias.size() > 0) {
@@ -288,6 +384,17 @@ public class FrmCadVeiculoController implements Initializable {
 				ObservableList<Reboque> reboques = FXCollections.observableArrayList(lstReboques);
 				cbReboque.setItems(reboques);
 			}
+
+			btnGravar.setText("Gravar");
+
+			if (this.cam != null) {
+				this.CarregarCaminhaoTela(cam);
+				btnGravar.setText("Editar");
+			} else if (this.car != null) {
+				this.CarregarCarroTela(car);
+				btnGravar.setText("Editar");
+			}
+
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
 			alert.showAndWait();
