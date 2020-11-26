@@ -11,7 +11,7 @@ public class Carro extends Automovel
 	}
 
 	public Carro() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	private int _qtdPortas;	
@@ -25,13 +25,13 @@ public class Carro extends Automovel
 	}
 
 	@Override
-	public String CalcularDepreciacaoGerencial(double valorFinal) {
+	public String CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos) {
 		
 		Categoria cat = this.get_Categoria();
 		
-		int meses = cat.getprazoDepreciacao() * 12;
+		int meses = prazoAnos * 12;
 		
-		double depreciacaoMes = (this.get_valor() - valorFinal) * meses;
+		double depreciacaoMes = (this.get_valor() - valorFinal) / meses;
 		
 		double valorDepreciado = depreciacaoMes * meses;
 		
@@ -54,6 +54,6 @@ public class Carro extends Automovel
 
 	@Override
 	public String toString() {
-		return "Carro qtd Portas=" + _qtdPortas;
+		return "Carro " + this.get_nome() + ", valor= " + this.get_qtdRodas() + ", Quilometragem= " + this.getQuilometragem();
 	}
 }

@@ -167,7 +167,7 @@ public class CarroDAO implements IPadraoCRUD<Carro> {
 
 			ResultSet resultSet = bancoDados.ExecutarQuery(sql.toString());
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				carros.add(this.Preencher(resultSet));
 			}			
 

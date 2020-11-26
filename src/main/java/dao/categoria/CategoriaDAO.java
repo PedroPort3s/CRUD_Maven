@@ -118,8 +118,8 @@ public class CategoriaDAO implements IPadraoCRUD<Categoria> {
 			sql.append(this.Select_Categoria());
 
 			ResultSet resultSet = bancoDados.ExecutarQuery(sql.toString());
-
-			if (resultSet.next()) {
+//cu de bosta
+			while (resultSet.next()) {
 				categorias.add(this.Preencher(resultSet));
 			}			
 

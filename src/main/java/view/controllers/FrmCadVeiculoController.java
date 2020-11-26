@@ -155,9 +155,6 @@ public class FrmCadVeiculoController implements Initializable {
 	private TextField txtNumEixos;
 
 	@FXML
-	private Button btnCadReboque;
-
-	@FXML
 	private Button btnGravar;
 
 	@FXML
@@ -171,22 +168,6 @@ public class FrmCadVeiculoController implements Initializable {
 
 	@FXML
 	private TextField txtQtdRodas;
-
-	@FXML
-	void btnCadReboque_Click(ActionEvent event) {
-		try {
-			Stage primaryStage = new Stage();
-			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/FrmCadReboque.fxml"));
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("CRUD de Veiculos");
-			primaryStage.show();
-
-		} catch (Exception e) {
-			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
-			alert.showAndWait();
-		}
-	}
 
 	@FXML
 	void btnExcluir(ActionEvent event) {
@@ -288,12 +269,16 @@ public class FrmCadVeiculoController implements Initializable {
 	@FXML
 	void btnVoltar_Click(ActionEvent event) {
 		try {
+			Stage stage = (Stage) btnVoltar.getScene().getWindow();
+			 stage.close();
+			
 			Stage primaryStage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/FrmMenu.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("CRUD de Veiculos");
-			primaryStage.show();
+			primaryStage.show(); 
+	        
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
 			alert.showAndWait();
@@ -319,7 +304,6 @@ public class FrmCadVeiculoController implements Initializable {
 	private void TravaCaminhao(boolean trava) {
 		cbReboque.setDisable(trava);
 		txtNumEixos.setDisable(trava);
-		btnCadReboque.setDisable(trava);
 	}
 
 	@FXML
@@ -334,7 +318,6 @@ public class FrmCadVeiculoController implements Initializable {
 		assert txtValor != null : "fx:id=\"txtValor\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
 		assert txtNumPortas != null : "fx:id=\"txtNumPortas\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
 		assert txtNumEixos != null : "fx:id=\"txtNumEixos\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
-		assert btnCadReboque != null : "fx:id=\"btnCadReboque\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
 		assert btnGravar != null : "fx:id=\"btnGravar\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
 		assert lbIdValor != null : "fx:id=\"lbIdValor\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";
 		assert btnExcluir != null : "fx:id=\"btnExcluir\" was not injected: check your FXML file 'FrmCadVeiculo.fxml'.";

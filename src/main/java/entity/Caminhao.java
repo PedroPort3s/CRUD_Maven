@@ -36,19 +36,19 @@ public class Caminhao extends Automovel {
 	}
 
 	@Override
-	public String CalcularDepreciacaoGerencial(double valorFinal) {
+	public String CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos) {
 		Categoria cat = this.get_Categoria();
 
-		int meses = cat.getprazoDepreciacao() * 12;
+		int meses = prazoAnos * 12;
 
-		double depreciacaoMesCaminhao = (this.get_valor() - valorFinal) * meses;
+		double depreciacaoMesCaminhao = (this.get_valor() - valorFinal) / meses;
 
 		double valorDepreciadoCaminhao = depreciacaoMesCaminhao * meses;
 		
 		String depCaminhao = "Caminhão " + this.get_nome()+":\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesCaminhao, 2)  + "\nValor depreciado: R$ " + Verifica.Arredondar(valorDepreciadoCaminhao, 2) + " em "
 				+ cat.getprazoDepreciacao() + " anos.";
 		
-		double depreciacaoMesReboque = (this.getReboque().getValorReboque() - (this.getReboque().getValorReboque() * (cat.getpercValorResidual()/100))) * meses;
+		double depreciacaoMesReboque = (this.getReboque().getValorReboque() - (this.getReboque().getValorReboque() * (cat.getpercValorResidual()/100))) / meses;
 		double valorDepreciadoReboque = depreciacaoMesReboque * meses;
 		
 		String depReboque = "Reboque " + this.getReboque().getNomeReboque()+":\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesReboque, 2)   + "\nValor depreciado: R$ " + Verifica.Arredondar(valorDepreciadoReboque, 2)  + " em "
@@ -70,7 +70,7 @@ public class Caminhao extends Automovel {
 		double porcentagemDesvalorizacaoCaminhao = (valorResidualCaminhao / this.get_valor()) * 100;
 		
 		String depCaminhao = "Caminhão " + this.get_nome()+"\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesesCaminhao,2) + "\nValor residual após " + cat.getprazoDepreciacao()
-		+ " anos: R$ " + Verifica.Arredondar(valorResidualCaminhao,2) + "\n Desvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacaoCaminhao,2) + "%";
+		+ " anos: R$ " + Verifica.Arredondar(valorResidualCaminhao,2) + "\nDesvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacaoCaminhao,2) + "%";
 		
 		double valorResidualReboque = this.getReboque().getValorReboque() * (cat.getpercValorResidual() / 100);
 
@@ -79,7 +79,7 @@ public class Caminhao extends Automovel {
 		double porcentagemDesvalorizacaoReboque= (valorResidualCaminhao / this.get_valor()) * 100;
 		
 		String depReboque = "Reboque " + this.getReboque().getNomeReboque()+"\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesesReboque,2) + "\nValor residual após " + cat.getprazoDepreciacao()
-		+ " anos: R$ " + Verifica.Arredondar(valorResidualReboque,2) + "\n Desvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacaoReboque,2) + "%";
+		+ " anos: R$ " + Verifica.Arredondar(valorResidualReboque,2) + "\nDesvalorização de:" + Verifica.Arredondar(porcentagemDesvalorizacaoReboque,2) + "%";
 		
 		String depreciacaoTotal = "Depreciação total ao mes: R$ " + Verifica.Arredondar(depreciacaoMesesCaminhao + depreciacaoMesesReboque,2) + "\nValor total residual em" + cat.getprazoDepreciacao()+" anos: R$ "+Verifica.Arredondar((valorResidualCaminhao+valorResidualReboque),2);
 
@@ -88,6 +88,6 @@ public class Caminhao extends Automovel {
 
 	@Override
 	public String toString() {
-		return "Caminhao quantidade Eixos=" + _qtdEixos + ", Reboque=" + Reboque;
+		return "Caminhao " + this.get_nome() + ", valor= " + this.get_qtdRodas() + ", Quilometragem= " + this.getQuilometragem();
 	}
 }

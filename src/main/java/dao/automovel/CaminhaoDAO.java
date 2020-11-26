@@ -168,7 +168,7 @@ public class CaminhaoDAO implements IPadraoCRUD<Caminhao> {
 
 			ResultSet resultSet = bancoDados.ExecutarQuery(sql.toString());
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				caminhoes.add(this.Preencher(resultSet));
 			}			
 

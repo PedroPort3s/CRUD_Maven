@@ -49,6 +49,25 @@ public class FrmMenuController extends Application implements Initializable {
 
     @FXML
     private ListView<Caminhao> lvCaminhoes;
+    
+    @FXML
+    private Button btnCadReboque;
+
+    @FXML
+    void btnCadReboque_Click(ActionEvent event) {
+    	try {
+			Stage primaryStage = new Stage();
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/FrmCadReboque.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Cadastro de Reboques");
+			primaryStage.show();
+
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
+			alert.showAndWait();
+		}
+    }
 
     @FXML
     void btnCategorias_Click(ActionEvent event) {
@@ -155,19 +174,26 @@ public class FrmMenuController extends Application implements Initializable {
 		        				}
 		        				else if(retorno.contains("gerencial")) 
 		        				{
-		        					TextInputDialog textInputDialog = new TextInputDialog("Digite o valor do carro para o calculo sobre os "+newValue.get_Categoria().getprazoDepreciacao()+ " anos.");
-		        			    	textInputDialog.showAndWait().ifPresent(ret -> {
-		        			    		Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoGerencial(Verifica.ConverterNumeroDouble(ret)),ButtonType.OK);
-			        			    	alert.showAndWait();
+		        					TextInputDialog textInputDialogAnos = new TextInputDialog("Anos");
+		        					textInputDialogAnos.setHeaderText("Digite o prazo em anos.");
+		        					textInputDialogAnos.showAndWait().ifPresent(ano -> {
+		        						int anos = Verifica.ConverterNumeroInt(ano);
+		        						TextInputDialog textInputDialog = new TextInputDialog("Em R$");
+		        						textInputDialog.setHeaderText("Digite o valor do carro para o calculo sobre os " + anos + " anos.");
+			        			    	textInputDialog.showAndWait().ifPresent(ret -> {
+			        			    		Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoGerencial(Verifica.ConverterNumeroDouble(ret),anos),ButtonType.OK);
+				        			    	alert.showAndWait();
+			        			    	});
 		        			    	});
 		        				}
 		        				else 
 		        				{
 		        					Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoContabil(),ButtonType.OK);
+		        					alert.setHeaderText("Calculo de depreciação contábil.");
 		        			    	alert.showAndWait();
 		        				}
 		        				
-		        				lvCaminhoes.getSelectionModel().clearSelection();
+		        				lvCarros.getItems().clear();
 		        			}        		
 		            	});
 				    }
@@ -205,10 +231,16 @@ public class FrmMenuController extends Application implements Initializable {
 		        				}
 		        				else if(retorno.contains("gerencial")) 
 		        				{
-		        					TextInputDialog textInputDialog = new TextInputDialog("Digite o valor do caminhão para o calculo sobre os "+newValue.get_Categoria().getprazoDepreciacao()+ " anos.");
-		        			    	textInputDialog.showAndWait().ifPresent(ret -> {
-		        			    		Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoGerencial(Verifica.ConverterNumeroDouble(ret)),ButtonType.OK);
-			        			    	alert.showAndWait();
+		        					TextInputDialog textInputDialogAnos = new TextInputDialog("Anos");
+		        					textInputDialogAnos.setHeaderText("Digite o prazo em anos.");
+		        					textInputDialogAnos.showAndWait().ifPresent(ano -> {
+		        						int anos = Verifica.ConverterNumeroInt(ano);
+		        						TextInputDialog textInputDialog = new TextInputDialog("Em R$");
+		        						textInputDialog.setHeaderText("Digite o valor do caminhão para o calculo sobre os " + anos + " anos.");
+			        			    	textInputDialog.showAndWait().ifPresent(ret -> {
+			        			    		Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoGerencial(Verifica.ConverterNumeroDouble(ret),anos),ButtonType.OK);
+				        			    	alert.showAndWait();
+			        			    	});
 		        			    	});
 		        				}
 		        				else 
@@ -217,7 +249,7 @@ public class FrmMenuController extends Application implements Initializable {
 		        			    	alert.showAndWait();
 		        				}
 		        				
-		        				lvCaminhoes.getSelectionModel().clearSelection();
+		        				lvCaminhoes.getItems().clear();
 		        			}        		
 		            	});
 				    }

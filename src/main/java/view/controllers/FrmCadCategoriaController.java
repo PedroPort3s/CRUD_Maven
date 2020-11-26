@@ -9,9 +9,13 @@ import helper.Alerts;
 import helper.Verifica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -33,6 +37,9 @@ public class FrmCadCategoriaController implements Initializable {
 
 	@FXML
 	private TextField txtValorResidual;
+	
+	@FXML
+    private Button btnVoltar;
 	
 	private void LimparCadastro()
 	{
@@ -63,6 +70,25 @@ public class FrmCadCategoriaController implements Initializable {
 	    	alert.showAndWait();
 		}
 	}
+	
+	@FXML
+    void btnVoltar_Click(ActionEvent event) {
+		try {
+			Stage stage = (Stage) btnVoltar.getScene().getWindow();
+			 stage.close();
+			
+			Stage primaryStage = new Stage();
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/FrmMenu.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("CRUD de Veiculos");
+			primaryStage.show(); 
+	        
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR, e.getMessage(), ButtonType.OK);
+			alert.showAndWait();
+		}
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

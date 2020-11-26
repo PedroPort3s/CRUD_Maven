@@ -5,11 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controllers.FrmCadCategoriaController">
+<AnchorPane prefHeight="295.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controllers.FrmCadCategoriaController">
    <children>
-      <AnchorPane layoutX="-129.0" layoutY="-305.0" prefHeight="502.0" prefWidth="535.0">
+      <AnchorPane layoutX="-111.0" layoutY="-300.0" prefHeight="502.0" prefWidth="535.0">
          <children>
-            <Button fx:id="btnGravar" layoutX="464.0" layoutY="445.0" mnemonicParsing="false" onAction="#btnGravar_Click" text="Gravar" />
             <TextField fx:id="txtNome" layoutX="286.0" layoutY="326.0" promptText="Nome da categoria" />
             <TextField fx:id="txtTaxaDepreciacao" layoutX="286.0" layoutY="369.0" promptText="Em %" />
             <TextField fx:id="txtPrazoDepreciacao" layoutX="286.0" layoutY="408.0" promptText="Em anos" />
@@ -20,5 +19,7 @@
             <Label layoutX="151.0" layoutY="452.0" text="Valor residual" />
          </children>
       </AnchorPane>
+      <Button fx:id="btnGravar" layoutX="271.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnGravar_Click" text="Gravar" />
+      <Button fx:id="btnVoltar" layoutX="41.0" layoutY="187.0" mnemonicParsing="false" onAction="#btnVoltar_Click" text="Voltar" />
    </children>
 </AnchorPane>

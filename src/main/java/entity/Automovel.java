@@ -87,7 +87,7 @@ public abstract class Automovel {
 		this.quilometragem = quilometragem;
 	}
 	
-	public abstract String CalcularDepreciacaoGerencial(double valorFinal);
+	public abstract String CalcularDepreciacaoGerencial(double valorFinal, int prazoAnos);
 	
 	public abstract String CalcularDepreciacaoContabil();
 

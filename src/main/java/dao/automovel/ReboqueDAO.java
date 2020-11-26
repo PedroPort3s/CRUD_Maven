@@ -11,11 +11,11 @@ import interfaces.IBancoDados;
 
 public class ReboqueDAO {
 	private IBancoDados bancoDados = null;
-	
+
 	public ReboqueDAO(IBancoDados bancoDados) {
 		this.bancoDados = bancoDados;
 	}
-	
+
 	private String Select_Reboque() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT id_Reboque, nomeReboque, quilometragemReboque, valorReboque FROM reboque ");
@@ -45,7 +45,7 @@ public class ReboqueDAO {
 
 		return retorno;
 	}
-	
+
 	public Reboque Carregar(int id) throws Exception {
 		Reboque reboque = null;
 
@@ -53,13 +53,13 @@ public class ReboqueDAO {
 
 			StringBuilder sql = new StringBuilder();
 			sql.append(this.Select_Reboque());
-			sql.append(" where id_Reboque =" + id);			
+			sql.append(" where id_Reboque =" + id);
 
 			ResultSet resultSet = bancoDados.ExecutarQuery(sql.toString());
 
 			if (resultSet.next()) {
 				reboque = this.Preencher(resultSet);
-			}			
+			}
 
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();
@@ -68,7 +68,7 @@ public class ReboqueDAO {
 
 		return reboque;
 	}
-	
+
 	public List<Reboque> Listar() throws Exception {
 		List<Reboque> reboques = new ArrayList<Reboque>();
 
@@ -79,9 +79,9 @@ public class ReboqueDAO {
 
 			ResultSet resultSet = bancoDados.ExecutarQuery(sql.toString());
 
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				reboques.add(this.Preencher(resultSet));
-			}			
+			}
 
 		} catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();
@@ -90,8 +90,9 @@ public class ReboqueDAO {
 
 		return reboques;
 	}
-	
-	public Reboque Preencher(ResultSet resultSet) throws SQLException {		
-		return new Reboque(resultSet.getInt("id_Reboque"), resultSet.getString("nomeReboque"), resultSet.getDouble("quilometragemReboque"), resultSet.getDouble("valorReboque"));
+
+	public Reboque Preencher(ResultSet resultSet) throws SQLException {
+		return new Reboque(resultSet.getInt("id_Reboque"), resultSet.getString("nomeReboque"),
+				resultSet.getDouble("quilometragemReboque"), resultSet.getDouble("valorReboque"));
 	}
 }
