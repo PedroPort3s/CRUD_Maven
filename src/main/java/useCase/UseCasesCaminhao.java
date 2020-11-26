@@ -63,7 +63,7 @@ public class UseCasesCaminhao {
 
 			retorno = caminhaoDAO.Editar(caminhao);
 
-			if (retorno == 2) {
+			if (retorno == 1) {
 				bancoDados.CommitTransacao();
 			} else {
 				throw new Exception("Não foi possível editar o caminhao");

@@ -35,7 +35,7 @@ public class Carro extends Automovel
 		
 		double valorDepreciado = depreciacaoMes * meses;
 		
-		return "Depreciação ao Mes: R$ "+ Verifica.Arredondar(depreciacaoMes,2) + "\nValor depreciado: R$ "+ Verifica.Arredondar(valorDepreciado,2)+" em "+ cat.getprazoDepreciacao() +" anos.";
+		return "Depreciação ao Mes: R$ "+ Verifica.Arredondar(depreciacaoMes,2) + "\nValor depreciado: R$ "+ Verifica.Arredondar(valorDepreciado,2)+" em "+ prazoAnos +" anos.";
 	}
 
 	@Override
@@ -54,6 +54,6 @@ public class Carro extends Automovel
 
 	@Override
 	public String toString() {
-		return "Carro " + this.get_nome() + ", valor= " + this.get_qtdRodas() + ", Quilometragem= " + this.getQuilometragem();
+		return "Carro " + this.get_nome() + ", valor= " + Verifica.Arredondar(this.get_valor(),2) + ", Quilometragem= " + this.getQuilometragem();
 	}
 }

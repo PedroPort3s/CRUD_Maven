@@ -38,8 +38,8 @@ public class FrmCadVeiculoController implements Initializable {
 
 	}
 
-	private Carro car = null;
-	private Caminhao cam = null;
+	protected Carro car = null;
+	protected Caminhao cam = null;
 
 	public FrmCadVeiculoController(Carro carro) {
 		this.car = carro;
@@ -175,11 +175,7 @@ public class FrmCadVeiculoController implements Initializable {
 			int id = Verifica.ConverterNumeroInt(lbIdValor.getText());
 
 			if (id > 0) {
-				ControlCaminhao ctCaminhao = new ControlCaminhao();
-
-				Caminhao caminhao = ctCaminhao.CarregarCaminhao(id);
-
-				if (caminhao == null) {
+				if(rdCarro.isSelected()) {
 					ControlCarro ctCarro = new ControlCarro();
 					Carro carro = ctCarro.CarregarCarro(id);
 
@@ -189,16 +185,22 @@ public class FrmCadVeiculoController implements Initializable {
 						} else {
 							Alert alert = Alerts.alertSucesso("Sucesso", "", "Carro excluido com sucesso.");
 							alert.showAndWait();
+							this.LimparCadastro();
 						}
 					} else {
 						throw new Exception("Não foi encontrado nenhum carro ou caminhao com o id" + id);
 					}
-				} else {
+				}
+				else {
+					ControlCaminhao ctCaminhao = new ControlCaminhao();
+
+					Caminhao caminhao = ctCaminhao.CarregarCaminhao(id);
 					if (ctCaminhao.ExcluirCaminhao(caminhao) != 1) {
 						throw new Exception("Erro ao excluir o caminhao");
 					} else {
 						Alert alert = Alerts.alertSucesso("Sucesso", "", "Caminhao excluido com sucesso.");
 						alert.showAndWait();
+						this.LimparCadastro();
 					}
 				}
 			} else {
@@ -258,6 +260,8 @@ public class FrmCadVeiculoController implements Initializable {
 					Alert alert = Alerts.alertSucesso("Sucesso", "", "Carro "+  (!lbIdValor.getText().isEmpty() ? "editado" : "gravado")+ " com sucesso.");
 					alert.showAndWait();
 					LimparCadastro();
+					FrmMenuController.carS = null;
+					FrmMenuController.camS = null;
 				}
 			}
 		} catch (Exception e) {
@@ -271,7 +275,8 @@ public class FrmCadVeiculoController implements Initializable {
 		try {
 			Stage stage = (Stage) btnVoltar.getScene().getWindow();
 			 stage.close();
-			
+			 FrmMenuController.carS = null;
+			 FrmMenuController.camS = null;
 			Stage primaryStage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/view/FrmMenu.fxml"));
 			Scene scene = new Scene(root);
@@ -369,6 +374,9 @@ public class FrmCadVeiculoController implements Initializable {
 			}
 
 			btnGravar.setText("Gravar");
+			
+			this.car = FrmMenuController.carS;
+			this.cam = FrmMenuController.camS;
 
 			if (this.cam != null) {
 				this.CarregarCaminhaoTela(cam);

@@ -54,7 +54,7 @@ public class Caminhao extends Automovel {
 		String depReboque = "Reboque " + this.getReboque().getNomeReboque()+":\nDepreciação ao Mes: R$ " + Verifica.Arredondar(depreciacaoMesReboque, 2)   + "\nValor depreciado: R$ " + Verifica.Arredondar(valorDepreciadoReboque, 2)  + " em "
 				+ cat.getprazoDepreciacao() + " anos.";
 				
-		String depreciacaoTotal = "Depreciação total ao mes: R$ " + Verifica.Arredondar((depreciacaoMesCaminhao + depreciacaoMesReboque), 2)  + "\nValor total depreciado em" + cat.getprazoDepreciacao()+" anos: R$ "+Verifica.Arredondar((valorDepreciadoCaminhao+valorDepreciadoReboque), 2);
+		String depreciacaoTotal = "Depreciação total ao mes: R$ " + Verifica.Arredondar((depreciacaoMesCaminhao + depreciacaoMesReboque), 2)  + "\nValor total depreciado em " + prazoAnos +" anos: R$ "+Verifica.Arredondar((valorDepreciadoCaminhao+valorDepreciadoReboque), 2);
 
 		return depCaminhao + "\n" + depReboque + "\n" + depreciacaoTotal; 
 	}
@@ -88,6 +88,6 @@ public class Caminhao extends Automovel {
 
 	@Override
 	public String toString() {
-		return "Caminhao " + this.get_nome() + ", valor= " + this.get_qtdRodas() + ", Quilometragem= " + this.getQuilometragem();
+		return "Caminhao " + this.get_nome() + ", valor= " + Verifica.Arredondar(this.get_valor(),2) + ", Quilometragem= " + this.getQuilometragem();
 	}
 }

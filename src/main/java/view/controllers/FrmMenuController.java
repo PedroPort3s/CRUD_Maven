@@ -26,11 +26,12 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class FrmMenuController extends Application implements Initializable {
+	
+	protected static Carro carS = null;
+	protected static Caminhao camS = null;
 
     @FXML
     private ResourceBundle resources;
@@ -158,12 +159,12 @@ public class FrmMenuController extends Application implements Initializable {
 		        				if(retorno.contains("Editar")) 
 		        				{
 		        					try {
+		        						FrmMenuController.carS = newValue;
 		        						Stage primaryStage = new Stage();
 			        					AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/FrmCadVeiculo.fxml"));
 			        					Scene scene = new Scene(root);
 			        					primaryStage.setScene(scene);
 			        					primaryStage.setTitle("CRUD de Veiculos");
-			        					new FrmCadVeiculoController(newValue);
 			        					primaryStage.show();
 			        					
 		    						} 
@@ -182,6 +183,7 @@ public class FrmMenuController extends Application implements Initializable {
 		        						textInputDialog.setHeaderText("Digite o valor do carro para o calculo sobre os " + anos + " anos.");
 			        			    	textInputDialog.showAndWait().ifPresent(ret -> {
 			        			    		Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoGerencial(Verifica.ConverterNumeroDouble(ret),anos),ButtonType.OK);
+			        			    		alert.setHeaderText("Calculo de depreciação gerencial.");
 				        			    	alert.showAndWait();
 			        			    	});
 		        			    	});
@@ -192,12 +194,11 @@ public class FrmMenuController extends Application implements Initializable {
 		        					alert.setHeaderText("Calculo de depreciação contábil.");
 		        			    	alert.showAndWait();
 		        				}
-		        				
-		        				lvCarros.getItems().clear();
 		        			}        		
 		            	});
 				    }
 				});
+				//this.ListarGrids();
 		}
 			
 			if(listCaminhao != null && listCarro.size() > 0) {
@@ -215,6 +216,7 @@ public class FrmMenuController extends Application implements Initializable {
 		        				if(retorno.contains("Editar")) 
 		        				{
 		        					try {
+		        						FrmMenuController.camS = newValue;
 		        						Stage primaryStage = new Stage();
 			        					AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("/view/FrmCadVeiculo.fxml"));
 			        					Scene scene = new Scene(root);
@@ -239,21 +241,23 @@ public class FrmMenuController extends Application implements Initializable {
 		        						textInputDialog.setHeaderText("Digite o valor do caminhão para o calculo sobre os " + anos + " anos.");
 			        			    	textInputDialog.showAndWait().ifPresent(ret -> {
 			        			    		Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoGerencial(Verifica.ConverterNumeroDouble(ret),anos),ButtonType.OK);
+			        			    		alert.setHeaderText("Calculo de depreciação gerencial.");
 				        			    	alert.showAndWait();
+				        			    	
 			        			    	});
 		        			    	});
 		        				}
 		        				else 
 		        				{
 		        					Alert alert = new Alert(AlertType.INFORMATION,newValue.CalcularDepreciacaoContabil(),ButtonType.OK);
+		        					alert.setHeaderText("Calculo de depreciação contábil.");
 		        			    	alert.showAndWait();
 		        				}
-		        				
-		        				lvCaminhoes.getItems().clear();
 		        			}        		
 		            	});
 				    }
 				});
+				//this.ListarGrids();
 			}
 			
 		} catch (Exception e) {

@@ -2,6 +2,7 @@ package view.controllers;
 
 import controle.ControlReboque;
 import entity.Reboque;
+import helper.Alerts;
 import helper.Verifica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +43,8 @@ public class FrmCadReboqueController {
 
 			if (new ControlReboque().GravarReboque(reb) == 1) {
 				this.LimparCadastro();
+				Alert alert = Alerts.alertSucesso("Sucesso", "", "Reboque gravado com sucesso.");
+				alert.showAndWait();
 			} else {
 				throw new Exception("Erro ao gravar a reboque");
 			}
