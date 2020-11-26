@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Automovel` (
   `valor` DOUBLE NULL,
   `id_Categoria` INT NOT NULL,
   `quilometragem` DOUBLE NULL,
+  `nome` VARCHAR(100) NULL,
   PRIMARY KEY (`id`, `id_Categoria`),
   INDEX `fk_Automovel_Categoria1_idx` (`id_Categoria` ASC) VISIBLE,
   CONSTRAINT `fk_Automovel_Categoria1`
@@ -64,33 +65,34 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Caminhao`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Caminhao` (
-  `id_Aut` INT NOT NULL,
-  `qtdEixos` INT NULL,
-  PRIMARY KEY (`id_Aut`),
-  CONSTRAINT `fk_table1_Automovel1`
-    FOREIGN KEY (`id_Aut`)
-    REFERENCES `mydb`.`Automovel` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`Reboque`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Reboque` (
   `id_Reboque` INT NOT NULL,
   `quilometragemReboque` DOUBLE NULL,
-  `id_Caminhao` INT NOT NULL,
   `valorReboque` DOUBLE NULL,
-  PRIMARY KEY (`id_Reboque`, `id_Caminhao`),
-  INDEX `fk_Reboque_Caminhao1_idx` (`id_Caminhao` ASC) VISIBLE,
-  CONSTRAINT `fk_Reboque_Caminhao1`
-    FOREIGN KEY (`id_Caminhao`)
-    REFERENCES `mydb`.`Caminhao` (`id_Aut`)
+  `nomeReboque` VARCHAR(100) NULL,
+  PRIMARY KEY (`id_Reboque`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Caminhao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Caminhao` (
+  `id_Aut` INT NOT NULL,
+  `qtdEixos` INT NULL,
+  `id_Reboque` INT NOT NULL,
+  PRIMARY KEY (`id_Aut`, `id_Reboque`),
+  INDEX `fk_Caminhao_Reboque1_idx` (`id_Reboque` ASC) VISIBLE,
+  CONSTRAINT `fk_table1_Automovel1`
+    FOREIGN KEY (`id_Aut`)
+    REFERENCES `mydb`.`Automovel` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Caminhao_Reboque1`
+    FOREIGN KEY (`id_Reboque`)
+    REFERENCES `mydb`.`Reboque` (`id_Reboque`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

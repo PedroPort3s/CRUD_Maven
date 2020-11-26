@@ -96,6 +96,8 @@ public class FrmMenuController extends Application implements Initializable {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR,e.getMessage(),ButtonType.OK);
+	    	alert.showAndWait();
 		}
 	}
 
@@ -112,9 +114,9 @@ public class FrmMenuController extends Application implements Initializable {
 			List<Carro> listCarro = new ControlCarro().ListarCarros();
 			List<Caminhao> listCaminhao = new ControlCaminhao().ListarCaminhoes();
 			
-			if(listCarro != null && listCarro.size() > 0) {
+		if(listCarro != null && listCarro.size() > 0) {
 				listCarro.forEach(x->lvCarros.getItems().add(x));
-			}
+		}
 			
 			if(listCaminhao != null && listCarro.size() > 0) {
 				listCaminhao.forEach(o->lvCaminhoes.getItems().add(o));

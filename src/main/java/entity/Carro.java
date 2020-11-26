@@ -8,6 +8,10 @@ public class Carro extends Automovel
 		this._qtdPortas = _qtdPortas;
 	}
 
+	public Carro() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private int _qtdPortas;	
 
 	public int get_qtdPortas() {

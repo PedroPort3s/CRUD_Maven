@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="FrmCadReboqueController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="view.controllers.FrmCadReboqueController">
    <children>
       <AnchorPane layoutX="-325.0" layoutY="-408.0" prefHeight="597.0" prefWidth="626.0">
          <children>

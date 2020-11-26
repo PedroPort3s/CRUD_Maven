@@ -58,7 +58,7 @@ public class ControlCategoria {
 		return categoria;
 	}
 	
-	public List<Categoria> ListarCategorias(int id) throws Exception {
+	public List<Categoria> ListarCategorias() throws Exception {
 		List<Categoria> categorias = null;
 		
 		UseCasesCategoria useCaseCat = new UseCasesCategoria(new DbMySql());

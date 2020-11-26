@@ -39,7 +39,7 @@ public class ControlReboque {
 		return reboque;
 	}
 
-	public List<Reboque> ListarReboques(int id) throws Exception {
+	public List<Reboque> ListarReboques() throws Exception {
 		List<Reboque> caminhoes = null;
 
 		UseCasesReboque UseCaseReboque = new UseCasesReboque(new DbMySql());

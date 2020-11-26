@@ -5,15 +5,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="FrmCadVeiculoController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controllers.FrmCadVeiculoController">
    <children>
-      <AnchorPane layoutX="-78.0" layoutY="-102.0" prefHeight="459.0" prefWidth="480.0">
+      <AnchorPane layoutX="-78.0" layoutY="-102.0" prefHeight="542.0" prefWidth="654.0">
          <children>
-            <RadioButton fx:id="rdCarro" layoutX="98.0" layoutY="118.0" mnemonicParsing="false" onAction="#rdCarro_Change" text="Carro" />
-            <RadioButton fx:id="rdCaminhao" layoutX="175.0" layoutY="118.0" mnemonicParsing="false" onAction="#rdCaminhao_Change" text="Caminhao" />
+            <RadioButton fx:id="rdCarro" layoutX="98.0" layoutY="118.0" mnemonicParsing="false" onAction="#rdCarro_Change" selected="true" text="Carro">
+               <toggleGroup>
+                  <ToggleGroup fx:id="veiculo" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="rdCaminhao" layoutX="175.0" layoutY="118.0" mnemonicParsing="false" onAction="#rdCaminhao_Change" text="Caminhao" toggleGroup="$veiculo" />
             <Label layoutX="91.0" layoutY="164.0" text="Nome" />
             <Label layoutX="92.0" layoutY="199.0" text="Cor" />
             <Label layoutX="91.0" layoutY="233.0" text="Quilometragem" />
@@ -22,7 +25,7 @@
             <Label layoutX="302.0" layoutY="335.0" text="N° Eixos" />
             <Label layoutX="93.0" layoutY="266.0" text="Valor" />
             <Label layoutX="96.0" layoutY="372.0" text="Reboque" />
-            <ComboBox fx:id="cbReboque" layoutX="183.0" layoutY="368.0" prefHeight="26.0" prefWidth="166.0" />
+            <ComboBox fx:id="cbReboque" layoutX="183.0" layoutY="368.0" prefHeight="26.0" prefWidth="191.0" />
             <ComboBox fx:id="cbCategorias" layoutX="183.0" layoutY="295.0" prefHeight="26.0" prefWidth="257.0" />
             <TextField fx:id="txtNome" layoutX="184.0" layoutY="160.0" />
             <TextField fx:id="txtCor" layoutX="184.0" layoutY="195.0" />
@@ -30,14 +33,14 @@
             <TextField fx:id="txtValor" layoutX="184.0" layoutY="262.0" />
             <TextField fx:id="txtNumPortas" layoutX="183.0" layoutY="331.0" prefHeight="26.0" prefWidth="84.0" />
             <TextField fx:id="txtNumEixos" layoutX="357.0" layoutY="330.0" prefHeight="26.0" prefWidth="84.0" />
-            <Button fx:id="btnCadReboque" layoutX="357.0" layoutY="368.0" mnemonicParsing="false" onAction="#btnCadReboque_Click" prefHeight="26.0" prefWidth="84.0" text="+ Reboque" />
-            <Button fx:id="btnGravar" layoutX="389.0" layoutY="414.0" mnemonicParsing="false" onAction="#btnGravar_Click" text="Gravar" />
-            <Label layoutX="357.0" layoutY="164.0" text="ID" />
-            <Label fx:id="lbIdValor" layoutX="385.0" layoutY="164.0" text="...." />
-            <Button fx:id="btnExcluir" layoutX="331.0" layoutY="414.0" mnemonicParsing="false" onAction="#btnExcluir" text="Excluir" />
+            <Button fx:id="btnCadReboque" layoutX="397.0" layoutY="368.0" mnemonicParsing="false" onAction="#btnCadReboque_Click" prefHeight="26.0" prefWidth="94.0" text="+ Reboque" />
+            <Button fx:id="btnGravar" layoutX="432.0" layoutY="414.0" mnemonicParsing="false" onAction="#btnGravar_Click" text="Gravar" />
+            <Label layoutX="430.0" layoutY="127.0" text="ID" />
+            <Label fx:id="lbIdValor" layoutX="458.0" layoutY="127.0" text="...." />
+            <Button fx:id="btnExcluir" layoutX="367.0" layoutY="414.0" mnemonicParsing="false" onAction="#btnExcluir" text="Excluir" />
             <Button fx:id="btnVoltar" layoutX="96.0" layoutY="414.0" mnemonicParsing="false" onAction="#btnVoltar_Click" text="Voltar" />
-            <Label layoutX="349.0" layoutY="199.0" text="N° Rodas" />
-            <TextField fx:id="txtQtdRodas" layoutX="349.0" layoutY="228.0" prefHeight="26.0" prefWidth="63.0" />
+            <Label layoutX="422.0" layoutY="162.0" text="N° Rodas" />
+            <TextField fx:id="txtQtdRodas" layoutX="422.0" layoutY="191.0" prefHeight="26.0" prefWidth="63.0" />
          </children>
       </AnchorPane>
    </children>

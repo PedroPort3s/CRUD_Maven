@@ -2,6 +2,10 @@ package entity;
 
 public abstract class Automovel {
 	
+	public Automovel() {
+			
+	}
+	
 	public Automovel(int _id, String _nome, int _qtdRodas, String _cor, double _valor, Categoria _Categoria,
 			double quilometragem) {
 		super();

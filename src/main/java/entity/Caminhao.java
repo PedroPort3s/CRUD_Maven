@@ -9,6 +9,10 @@ public class Caminhao extends Automovel {
 		Reboque = reboque;
 	}
 
+	public Caminhao() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private int _qtdEixos;
 
 	public int get_qtdEixos() {
