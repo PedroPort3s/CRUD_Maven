@@ -62,6 +62,7 @@ public class ControlCarro {
 
 		UseCasesCarro UseCaseCarro = new UseCasesCarro(new DbMySql());
 		try {
+			//cry
 			carros = UseCaseCarro.ListarCarros();
 		} catch (Exception e) {
 			throw e;
